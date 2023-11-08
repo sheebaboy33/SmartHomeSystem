@@ -1,0 +1,28 @@
+.device_card {
+    position: relative;
+    border: 1px solid black;
+    height: 288px;
+    overflow: hidden;
+    width: 224px;
+    border-radius: 24px;
+  }
+  
+  .device_card_img {
+    display: block;
+    max-width: 100%;
+    border-radius: 24px;
+    object-fit: cover;
+  }
+  
+  .device_card_info {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 16px;
+    background-color: white;
+  }
+  
+  .device_card_text {
+    font-size: 20px;
+  }

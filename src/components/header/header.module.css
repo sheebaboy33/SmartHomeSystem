@@ -1,0 +1,22 @@
+.header {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .header_heading {
+    font-size: 36px;
+  }
+
+  .header_tagline {
+    font-size: 18px;
+    margin-top: 16px;
+  }
+  
+  .profile_img {
+    display: block;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    background-size: contain;
+  }
