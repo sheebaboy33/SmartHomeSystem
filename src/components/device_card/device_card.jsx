@@ -4,8 +4,13 @@ import { PowerIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
 function DeviceCard(props) {
+    const [isOn, setIsOn] = useState(false);
+
+    // Ternary expression
+    const state = isOn ? "On" : "Off";
+
     const handleClick = () => {
-        alert("Button was clicked!!!" + props.name);
+        setIsOn(!isOn);// isOn ? setIsOn(false) : setIsOn(true);
     }
 
     return (
@@ -15,9 +20,9 @@ function DeviceCard(props) {
                 <div className={s.device_card_info_container}>
                     <h3 className={s.device_card_text}>{props.name}</h3>
                         <button type="button"
-                            onMouseEnter={handleClick}
-                            className={s.device_card_icon_off}>
-                            <PowerIcon width={36} height={36} />
+                            onClick={handleClick}
+                            className={isOn == true ? s.device_card_icon_on  : s.device_card_icon_off}>
+                            <PowerIcon width={25} height={25} />
                         </button>
                 </div>
             </div>
