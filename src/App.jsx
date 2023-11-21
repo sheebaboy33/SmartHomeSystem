@@ -1,8 +1,8 @@
 import './App.css';
 import Header from './components/header/header'
 import DeviceCard from './components/device_card/device_card';
+import LocationChip from './components/location_chip/location_chip';
 import { useState } from 'react';
-import { loadConfigFromFile } from 'vite';
 
 function App() {
   const devices = [
@@ -70,7 +70,7 @@ function App() {
 
           <div className='device_container'>
             {
-              devices.map((device, i) => {
+              filteredDevices.map((device, i) => {
                 return (<DeviceCard key={i} name={device.name} image={device.image} />);
               })
             }
