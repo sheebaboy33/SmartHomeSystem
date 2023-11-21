@@ -30,4 +30,9 @@ function DeviceCard(props) {
     )
 }
 
+DeviceCard.prototype = {
+    image: PropTypes.string,
+    name: PropTypes.string,
+};
+
 export default DeviceCard;
