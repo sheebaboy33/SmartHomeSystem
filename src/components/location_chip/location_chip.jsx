@@ -17,5 +17,4 @@ function LocationChip(props) {
         </button>
     );
 }
-
 export default LocationChip;

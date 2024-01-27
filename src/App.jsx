@@ -3,10 +3,21 @@ import Header from './components/header/header'
 import DeviceCard from './components/device_card/device_card';
 import LocationChip from './components/location_chip/location_chip';
 import { useState, useEffect } from 'react';
+import SearchBar from "./components/search-bar/search-bar";
 
 function App() {
 
   //const [devices, setDevices] = useState([]); // Initialize the state with an empty array
+  const [loading, setLoading] = useState(true);
+
+  const [selectedLocation, setSelectedLocation] = useState("All");
+  const [searchValue, setSearchValue] = useState("");
+
+  const handleSearchTyping = (value) => {
+    setSearchValue(value);
+    console.log(value);
+  };
+
 
   
   const devices = [
@@ -52,12 +63,16 @@ function App() {
       setDevices(data.data);
     };
     getDevices();
+    setLoading(false);
   }, []); // Run everything inside the function on the first load
   */
+  
+  useEffect(() => {
+    setLoading(false);
+  }, [selectedLocation]); // Run everything inside the function when the selectedLocation changes
 
-  const location = ["All", "Living Room", "Bed Room"];
+  const locations = ["All", "Living Room", "Bed Room"];
 
-  const [selectedLocation, setSelectedLocation] = useState("All");
 
   const handleLocationSelect = (location) => {
     setSelectedLocation(location);
@@ -70,39 +85,44 @@ function App() {
 
 
   return (
-    <div className='App'>
-      <div className='sideBar'></div>
-      <div className='widgets'></div>
-      <div className='home'>
+    <div className="App">
+      <div className="sidebar"></div>
+      <div className="widgets"></div>
+      <div className="home">
         <Header />
-        <div className='devices_section'>
-          <h1 className='devices_section_heading'>Devices</h1>
+        <div className="devices_section">
+          <h1 className="devices_section_heading">Devices</h1>
 
-          {/* This is the menu bar */}
-          <div className='menu-bar'>
-            {location.map((location, i) => {
-              return (
-                < LocationChip
-                  key={i}
-                  location={location}
-                  selectedLocation={selectedLocation}
-                  handleLocationSelect={handleLocationSelect}
-                />
-              );
-            })}
+          {/* This is the Menu Bar */}
+          <div className="menu-bar">
+            <div className="menubar_item_container">
+              {locations.map((location, i) => {
+                return (
+                  <LocationChip
+                    key={i}
+                    location={location}
+                    selectedLocation={selectedLocation}
+                    handleLocationSelect={handleLocationSelect}
+                  />
+                );
+              })}
+            </div>
+            <SearchBar handleSearchTyping={handleSearchTyping} searchValue={searchValue}/>
           </div>
-
-          <div className='device_container'>
-            {
+          <div className="device_container">
+            {!loading ? (
               filteredDevices.map((device, i) => {
-                return (<DeviceCard key={i} name={device.name} image={device.image} />);
+                return (
+                  <DeviceCard key={i} image={device.image} name={device.name} />
+                );
               })
-            }
-            
+            ) : (
+              <h1>Loading...</h1>
+            )}
           </div>
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default App
+export default App;
