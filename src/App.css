@@ -57,3 +57,14 @@
   align-items: center;
   gap: 16px;
 }
+
+.settings {
+  background-color: white;
+  border-radius: 24px;
+  padding: 32px;
+}
+
+.settings .accounts_title{
+  font-size: 24px;
+  margin-top: 8px;
+}
