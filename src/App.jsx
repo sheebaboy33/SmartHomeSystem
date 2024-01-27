@@ -2,9 +2,13 @@ import './App.css';
 import Header from './components/header/header'
 import DeviceCard from './components/device_card/device_card';
 import LocationChip from './components/location_chip/location_chip';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 function App() {
+
+  //const [devices, setDevices] = useState([]); // Initialize the state with an empty array
+
+  
   const devices = [
     {
       name: "Main Light",
@@ -30,6 +34,26 @@ function App() {
       location: "Living Room"
     }
   ];
+  
+
+  // Using useEffect, we can call the devices data if there is a server storing the data as below
+  /*
+  useEffect(() => {
+    const getDevices = async () => {
+      const response = await fetch(
+        "https://smart-home-ui-api-production.up.railway.app/api/devices",
+        {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+      const data = await response.json();
+      console.log(data.data);
+      setDevices(data.data);
+    };
+    getDevices();
+  }, []); // Run everything inside the function on the first load
+  */
 
   const location = ["All", "Living Room", "Bed Room"];
 
@@ -39,13 +63,13 @@ function App() {
     setSelectedLocation(location);
   };
 
-  const filteredDevices = selectedLocation === "All" ? devices : devices.filter((device) => {
+  const filteredDevices = selectedLocation === "All" ? devices :
+    devices.filter((device) => {
     return device.location === selectedLocation;
   });
 
 
   return (
-
     <div className='App'>
       <div className='sideBar'></div>
       <div className='widgets'></div>
