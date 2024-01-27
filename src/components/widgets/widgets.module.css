@@ -1,0 +1,12 @@
+.widget_timer {
+    color: white;
+    font-weight: 400;
+    font-size: 48px;
+}
+
+.widget_date {
+    margin-top: 10px;
+    color: white;
+    font-weight: 400;
+    font-size: 24px;
+}
